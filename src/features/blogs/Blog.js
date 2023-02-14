@@ -1,5 +1,5 @@
-import {useSelector} from 'react-redux'
 
+import {useSelector} from 'react-redux'
 import { selectBlogById } from './blogsApiSlice'
 
 
@@ -13,10 +13,10 @@ const Blog = ({ blogId}) => {
                 
             return (
                 <tr className="table_row">                   
-                    <td className="table__cell note__created">{blog.title}</td>
-                    <td className="table__cell note__updated">{blog.body}</td>
-                    <td className="table__cell note__title">{blog.link}</td>
-                    <td className="table__cell note__username">{blog.user}</td>                   
+                    <td className="table_cell note_created">{blog.title}</td>
+                    <td className="table_cell note_updated">{blog.body}</td>
+                    <td className="table_cell note_title">{blog.link}</td>
+                    <td className="table_cell note_username">{blog.user}</td>                   
                 </tr>
             )           
 

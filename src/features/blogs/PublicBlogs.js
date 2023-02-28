@@ -29,12 +29,14 @@ const PublicBlogs =() => {
 
        let filteredIds = [...ids] //For later to allow addition of a filter to the blog list
        
+       
        const tableContent = ids?.length && filteredIds.map(blogId => <Blog key={blogId} blogId={blogId}/>)
 
        content = (
         <table className="table">
             <thead className="table_thead">
                 <tr>
+                    <th scope="col" className="table__th blog_title">ID</th>
                     <th scope="col" className="table__th blog_title">Title</th>
                     <th scope="col" className="table__th blog_body">Body</th> 
                     <th scope="col" className="table__th blog_by">By</th> 

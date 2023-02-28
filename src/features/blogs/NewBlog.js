@@ -20,7 +20,7 @@ const NewBlog =() => {
     const [link, setLink] = useState('')
     const [user, setUser] = useState('')
 
-    //Listen for the new user submit being a success and then clear the state and navigate to blogs route
+    //Listen for the new blog submit being a success and then clear the state and navigate to /
     useEffect(()=>{
         if (isSuccess) {
             setTitle('')

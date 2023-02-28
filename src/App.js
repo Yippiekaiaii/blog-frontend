@@ -11,7 +11,8 @@ import Login from './features/auth/Login'
 import About from './components/About'
 import NewBlog from './features/blogs/NewBlog'
 import UsersList from './features/users/UsersList'
-
+import EditBlog from './features/blogs/UpdateBlog' 
+import EditUser from './features/users/UpdateUser'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,10 +21,22 @@ const router = createBrowserRouter(
               <Route index element={<PublicBlogs/>} />    
               <Route path='/login' element={<Login/>} />   
               <Route path='/about' element={<About/>} /> 
-              <Route path='/userslist' element={<UsersList/>} />   
+              
+              <Route path='/userslist' element={<UsersList/>} />  
+
+              <Route path='users'>
+                  <Route path=':id' element={<EditUser/>} />
+              </Route>
+              
               <Route path='/newblog' element={<NewBlog/>} />  		  
+              
+              <Route path="blogs">
+                <Route path=":id" element={<EditBlog/>} />
+              </Route>
+
               <Route path="*" element={<Error404/>} />
           </Route>
+         
         
     </Route>
   )

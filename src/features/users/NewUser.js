@@ -76,7 +76,6 @@ const NewUser = () => {
    
     return content
 
-
 }
 
 export default NewUser

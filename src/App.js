@@ -13,6 +13,7 @@ import NewBlog from './features/blogs/NewBlog'
 import UsersList from './features/users/UsersList'
 import EditBlog from './features/blogs/UpdateBlog' 
 import EditUser from './features/users/UpdateUser'
+import NewUser from './features/users/NewUser'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
               <Route path='/about' element={<About/>} /> 
               
               <Route path='/userslist' element={<UsersList/>} />  
+              <Route path='/newuser' element={<NewUser/>}/>
 
               <Route path='users'>
                   <Route path=':id' element={<EditUser/>} />

@@ -14,7 +14,7 @@ const NewBlog =() => {
     
     const navigate = useNavigate()
 
-    //set use state for the form
+    //set state for the form
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [link, setLink] = useState('')

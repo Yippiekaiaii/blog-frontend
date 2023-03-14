@@ -1,15 +1,21 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate,Link,useLocation } from "react-router-dom";
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";  
+import useAuth from "../hooks/useAuth";
 
 //REGEX for userslist endpoint
 const USERLIST_REGEX = /^\/userslist(\/)?$/
 const EDITBLOG_REGEX = /^\/blogs(\/)?$/
 
-const UserLinks =() => {
 
+const UserLinks =() => {
+    
     const navigate = useNavigate()
+
+    //Get username and role from useAuth hook
+    const {username, role, isLoggedIn} = useAuth()
 
     //Get current pathname
     const {pathname} = useLocation()
@@ -34,16 +40,17 @@ const UserLinks =() => {
 
     if (isError) return <p>Error:{error.message}</p>
 
-    let userLinksClass = null
+    let userLinksClass = null    
 
-
-    const content = (
+    let content = null
+    
+    if (isLoggedIn) content = (
         <header className={userLinksClass}>
-            <p>Logged In </p>          
-            <NavLink to="/newblog">New Blog</NavLink>       
-            <NavLink to="/userslist">Users</NavLink>   
-            <NavLink to="/newuser">New User</NavLink> 
-            <button title="Logout" onClick={onLogoutClicked}>Log Out</button>         
+            <p>Logged In as {username} ({role})</p>          
+            {(role=='Admin' || role=='Moderator' || role=='User') && <NavLink to="/newblog">New Blog</NavLink>}       
+            {(role=='Admin' || role=='Moderator') && <NavLink to="/userslist">Users</NavLink>}   
+            {(role=='Admin') && <NavLink to="/newuser">New User</NavLink>} 
+            <button title="Logout" onClick={onLogoutClicked}>Log Out</button> 
         </header>
     )
 

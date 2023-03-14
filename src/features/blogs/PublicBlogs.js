@@ -11,7 +11,12 @@ const PublicBlogs =() => {
         isSuccess,
         isError,
         error
-    } = useGetBlogsQuery()
+    } = useGetBlogsQuery(undefined, {
+        //Options brought in store.js setuplisteners
+        pollingInterval: 60000,  //Refetch data interval in ms
+        refetchOnFocus: true,   //Refetch if we put focus on another window and then back to the browser
+        refetchOnMountOrArgChange: true //If the component is remounted we refetch the data
+    })
 
     let content
 

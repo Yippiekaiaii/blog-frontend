@@ -2,8 +2,11 @@
 import {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import { useAddNewBlogMutation } from "./blogsApiSlice"
+import useAuth from "../../hooks/useAuth"
 
 const NewBlog =() => {
+
+    const {username} = useAuth()
 
     const [addNewblog, { //create addBlogNote function for use later
         isLoading,
@@ -18,7 +21,7 @@ const NewBlog =() => {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [link, setLink] = useState('')
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState(username)
 
     //Listen for the new blog submit being a success and then clear the state and navigate to /
     useEffect(()=>{
@@ -33,8 +36,7 @@ const NewBlog =() => {
 
     //Handlers
     const onTitleChanged = e => setTitle(e.target.value)
-    const onBodyChanged = e => setBody(e.target.value)
-    const onUserChanged = e => setUser(e.target.value)
+    const onBodyChanged = e => setBody(e.target.value)   
     const onLinkChanged = e => setLink(e.target.value)
 
     //Check if form is in a suitable state to save
@@ -70,11 +72,7 @@ const NewBlog =() => {
                     value={body}
                     onChange={onBodyChanged}
                 />
-
-
-               <label className="form-label" htmlFor="user">User:</label>
-               <input id="user" name="user" type="user" autoComplete="off" value={user} onChange={onUserChanged}/>
-
+               
                <label className="form-label" htmlFor="link">Link:</label>
                <input id="link" name="link" type="link" autoComplete="off" value={link} onChange={onLinkChanged}/>
 

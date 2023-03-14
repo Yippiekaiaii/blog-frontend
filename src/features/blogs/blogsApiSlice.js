@@ -7,7 +7,7 @@ const blogsAdapter = createEntityAdapter({})
 //Initialise the initial state of the Redux Store
 const initialState = blogsAdapter.getInitialState()
 
-//Create new api slice
+//Create end points for blog CRUD operations
 export const blogsApiSlice = apiSlice.injectEndpoints({
     //Define end points
         endpoints: builder => ({

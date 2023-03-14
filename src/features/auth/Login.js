@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setcredentials } from "./authSlice"
 import { useLoginMutation } from "./authApiSlice"
+import usePersist from "../../hooks/usePersist"
 
 
 const Login =() => {
@@ -15,6 +16,7 @@ const Login =() => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errMsg,setErrMsg] = useState('')
+    const [persist,setPersist] = usePersist()
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -36,6 +38,9 @@ const Login =() => {
     const handleUserInput = (e) => setUsername(e.target.value)
     const handlePwdInput = (e) => setPassword(e.target.value)
 
+    //Set state for trust device checkbox - takes the previous value of setPersist and set the variable to the opposite of what it was
+    const handleToggle = () => setPersist(prev => !prev)
+
     const handleSubmit = async (e) => {
         e.preventDefault() //prevent the default submit behavour of refreshing the page
         try {
@@ -43,7 +48,7 @@ const Login =() => {
             dispatch(setcredentials({accessToken}))
             setUsername('') //blank out the useName and password
             setPassword('')
-            navigate('/userslist')
+            navigate('/')
         } catch (err) {
             if (!err.status){
                 setErrMsg('No Server Response')
@@ -77,6 +82,8 @@ const Login =() => {
             <input type="text" id="password" value={password} onChange={handlePwdInput} autoComplete="off" required />
 
             <button>Log In</button>
+            <label htmlFor="persist">Remember me</label>
+            <input type = "checkbox" id="persist" onChange={handleToggle} checked={persist}/>
 
         </form>
         </>

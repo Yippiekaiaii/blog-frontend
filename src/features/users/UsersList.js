@@ -1,8 +1,11 @@
 import { useGetUsersQuery } from "./usersApiSlice"
 import User from './User'
+import useAuth from "../../hooks/useAuth"
 
 
 const UsersList = () => {
+
+    const {username,role} = useAuth()
     const {
         data: users, //rename the data we recieve from the hook to users
         isLoading,
@@ -25,7 +28,7 @@ const UsersList = () => {
     }
 
     if (isSuccess) {
-        const {ids} = users //destructure ids from the users data
+        const {ids, entities} = users //destructure ids & entities from the users data
         const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)  //check there are some id's existing then map over ids
        
         content = (

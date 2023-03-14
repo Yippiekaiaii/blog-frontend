@@ -5,7 +5,7 @@ const usersAdapter = createEntityAdapter({})
 
 const initialState = usersAdapter.getInitialState()
 
-//Create new api slice
+//Create end points for user CRUD operations
 export const usersApiSlice = apiSlice.injectEndpoints({ 
     //Define end points
     endpoints: builder => ({

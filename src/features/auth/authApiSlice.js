@@ -1,6 +1,8 @@
 import { apiSlice } from "../../app/apiSlice"
-import { logOut } from "./authSlice"
+import { logOut, setcredentials } from "./authSlice"
 
+
+//Create end points for auth
 export const authApiSlice = apiSlice.injectEndpoints({
 
         endpoints: builder => ({
@@ -23,9 +25,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 //onQueryStarted is provided by RTK query and allow us to verify our request was fulfilled successfully
                 async onQueryStarted(arg, { dispatch, queryFulfilled}) {
                     try {
-                        await queryFulfilled
+                        const { data } = await queryFulfilled
+                        console.log(data)
                         dispatch(logOut()) //use logout from authslice to set token to null
-                        dispatch(apiSlice.util.resetApiState()) //clears out the cache for the whole apiSlice
+                        setTimeout(()=>{ //this give a 1 sec delay to allow the unmounting of the component
+                            dispatch(apiSlice.util.resetApiState()) //clears out the cache for the whole apiSlice
+                        }, 1000)                     
+
                     } catch (err) {
                         console.log(err)
                     }
@@ -37,7 +43,23 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 query: ()=>({
                     url: '/auth/refresh',
                     method: 'GET',
-                })
+                }),
+
+                //When query is run take the reply from the API, destructure it and put it into state
+                async onQueryStarted(arg, { dispatch, queryFulfilled}) {
+                    try {
+                        //when the data is returned from the API (it will be a refresh token) destructure 
+                        const {data} = await queryFulfilled                        
+                        console.log(data)  
+                        //destructure the access token from the data                      
+                        const {accessToken} = data
+                        //Pass the accessToken in to state
+                        dispatch(setcredentials({accessToken}))
+                    } catch (err) {
+                        console.log(err)
+                    }
+                }
+
             }),
 
         })

@@ -2,7 +2,7 @@
 import {useSelector} from 'react-redux'
 import { selectBlogById } from './blogsApiSlice'
 import { useNavigate } from 'react-router-dom'
-
+import useAuth from "../../hooks/useAuth";
 
 
 const Blog = ({ blogId}) => {
@@ -10,6 +10,7 @@ const Blog = ({ blogId}) => {
         const navigate = useNavigate()
         const blog = useSelector(state=>selectBlogById(state,blogId))
         const handleEdit = () => navigate(`/blogs/${blogId}`)
+        const {username, role} = useAuth()
 
         if (blog) {
                 
@@ -22,7 +23,7 @@ const Blog = ({ blogId}) => {
                     <td className="table_cell blog_username">{blog.user}</td>    
                     
                     <td className="table_cell">
-                        <button onClick={handleEdit}>Edit</button>
+                        {(role=='Admin' || role=='Moderator') && <button onClick={handleEdit}>Edit</button>}
                     </td>
 
                 </tr>

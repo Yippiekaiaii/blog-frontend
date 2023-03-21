@@ -13,20 +13,15 @@ const Blog = ({ blogId}) => {
         const {username, role} = useAuth()
 
         if (blog) {
-                
+               
             return (
-                <tr className="table_row">   
-                    <td className="table_cell blog_id">{blog._id}</td>                
-                    <td className="table_cell blog_created">{blog.title}</td>
-                    <td className="table_cell blog_updated">{blog.body}</td>
-                    <td className="table_cell blog_title">{blog.link}</td>
-                    <td className="table_cell blog_username">{blog.user}</td>    
-                    
-                    <td className="table_cell">
-                        {(role=='Admin' || role=='Moderator') && <button onClick={handleEdit}>Edit</button>}
-                    </td>
+             
+                <div className="blog_wrapper">
+                    <h3>{blog.title}</h3>
+                    <p>{blog.body}</p>
+                    <p className="written_by">By: {blog.user} <span>{(role=='Admin' || role=='Moderator') && <button onClick={handleEdit}>Edit</button>}</span></p>
+                </div>
 
-                </tr>
             )           
 
         } else return null

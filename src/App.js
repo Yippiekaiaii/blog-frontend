@@ -17,6 +17,7 @@ import NewUser from './features/users/NewUser'
 import PersistLogin from './features/auth/PersistLogin';
 import RequireAuth from './features/auth/RequireAuth';
 import {ROLES} from './config/roles'
+import Prefetch from './features/auth/Prefetch';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +30,7 @@ const router = createBrowserRouter(
               <Route path='/about' element={<About/>} /> 
 
               {/* Protected Routes */}
-
+              <Route element={<Prefetch />}>
               <Route element={<PersistLogin />}>
                 <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]}/>}>  
 
@@ -53,6 +54,7 @@ const router = createBrowserRouter(
 
                     <Route path="*" element={<Error404/>} />
                 </Route> 
+              </Route>
               </Route>
               {/* End Protected Routes */}
 

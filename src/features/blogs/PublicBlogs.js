@@ -2,6 +2,7 @@
 import { useGetBlogsQuery } from "./blogsApiSlice";
 import Blog from './Blog'
 
+
 const PublicBlogs =() => {
  
     //Use the useGetBlogsQuery hook from the blogsApiSlice.js
@@ -22,6 +23,7 @@ const PublicBlogs =() => {
 
     //Loading 
     if (isLoading) content = <p>Loading...</p>
+  
 
     //On Error
     if (isError) {
@@ -36,22 +38,8 @@ const PublicBlogs =() => {
        
        
        const tableContent = ids?.length && filteredIds.map(blogId => <Blog key={blogId} blogId={blogId}/>)
-
-       content = (
-        <table className="table">
-            <thead className="table_thead">
-                <tr>
-                    <th scope="col" className="table__th blog_title">ID</th>
-                    <th scope="col" className="table__th blog_title">Title</th>
-                    <th scope="col" className="table__th blog_body">Body</th> 
-                    <th scope="col" className="table__th blog_by">By</th> 
-                </tr>
-            </thead>
-            <tbody>
-                {tableContent}
-            </tbody>
-        </table>
-        )
+       content = <div>{tableContent}</div>
+      
     }    
     
     return content   

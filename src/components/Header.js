@@ -7,13 +7,22 @@ const Header =() => {
     const {username,role,isLoggedIn} = useAuth()
 
     const content = (
-        <header>
-            <h1>Welcome To My Developers Blog Page</h1>
-            <p>Where I document my journey into web development</p>
-            <NavLink to="/">Home</NavLink>
-            {(!isLoggedIn) && <NavLink to="/login">Login</NavLink>}
-            <NavLink to="/about">About</NavLink>     
-        </header>
+        <>
+        <div className="header_wrapper">
+            <header className="main_header">
+                <h1>Welcome To My Blog Page</h1>
+
+                <div className="main_links">
+                    <NavLink to="/">Home</NavLink>
+                    {(!isLoggedIn) && <NavLink to="/login">Login</NavLink>}
+                    <NavLink to="/about">About</NavLink>   
+                </div>
+                
+            </header>
+        
+            <p>Node, react, javascript and more</p>
+        </div>
+        </>
     )
 
     return content

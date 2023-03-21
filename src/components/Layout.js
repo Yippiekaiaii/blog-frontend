@@ -7,9 +7,12 @@ import UserLinks from './UserLinks'
 const Layout = () => {    
     return (
         <main>
-            <Header/>  
-            <UserLinks/>
-            <Outlet/>    
+            <Header/> 
+            <div className='content_wrapper'>
+                <UserLinks/>
+                <Outlet/> 
+            </div> 
+               
         </main>
     )
 }

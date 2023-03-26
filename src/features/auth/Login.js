@@ -70,21 +70,31 @@ const Login =() => {
 
     const content = (
         <>
-        <p>Login</p>
+        <h3>Sign In</h3>
+        <p style={{fontSize:12}}>Please enter your credentials below</p>
 
         <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
         <form onSubmit={handleSubmit}>
+          
+                <div className="login_input">
+                    <label htmlFor="username">Username</label>
+                    <input type="text" id="username" ref={userRef} value={username} onChange={handleUserInput} autoComplete="off" required /><br></br>
+            
+                </div>
+                
+                <div className="login_input">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" value={password} onChange={handlePwdInput} autoComplete="off" required />
+                </div>
 
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" ref={userRef} value={username} onChange={handleUserInput} autoComplete="off" required />
-            <label htmlFor="password">Password:</label>
-            <input type="text" id="password" value={password} onChange={handlePwdInput} autoComplete="off" required />
-
-            <button>Log In</button>
-            <label htmlFor="persist">Remember me</label>
-            <input type = "checkbox" id="persist" onChange={handleToggle} checked={persist}/>
-
+                <br></br>
+                
+                <img src="loginicon.png" alt="log in" onClick={handleSubmit}></img>
+                <br></br>
+                <label htmlFor="persist" style={{fontSize:10}}>Remember me</label>
+                <input type = "checkbox" id="persist" onChange={handleToggle} checked={persist}/>
+           
         </form>
         </>
 

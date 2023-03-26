@@ -40,17 +40,27 @@ const UserLinks =() => {
 
     if (isError) return <p>Error:{error.message}</p>
 
-    let userLinksClass = null    
-
     let content = null
     
     if (isLoggedIn) content = (
-        <header className={userLinksClass}>
-            <p>Logged In as {username} ({role})</p>          
-            {(role=='Admin' || role=='Moderator' || role=='User') && <NavLink to="/newblog">New Blog</NavLink>}       
-            {(role=='Admin' || role=='Moderator') && <NavLink to="/userslist">Users</NavLink>}   
-            {(role=='Admin') && <NavLink to="/newuser">New User</NavLink>} 
-            <button title="Logout" onClick={onLogoutClicked}>Log Out</button> 
+        <header className="user_header">
+        <div className="user_links_wrapper">
+
+            <div className="user_name">
+                <p>Logged In as {username} ({role})</p> 
+                <img src="logouticon.png" alt="log out" onClick={onLogoutClicked}></img>               
+            </div>
+
+            <div className="user_links">   
+                <NavLink to="/">Blogs</NavLink> 
+                {(role=='Admin' || role=='Moderator' || role=='User') && <NavLink to="/newblog">New Blog</NavLink>}       
+                {(role=='Admin' || role=='Moderator') && <NavLink to="/userslist">Users</NavLink>}   
+                {(role=='Admin') && <NavLink to="/newuser">New User</NavLink>} 
+              
+            </div>
+         
+        </div>
+        <hr/>
         </header>
     )
 

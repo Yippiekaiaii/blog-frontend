@@ -87,36 +87,55 @@ const EditBlogForm = ({blog}) => {
     
     const content = (
         <>
-        <h2>Update blog - {blog.title}</h2>
+
+          <div className="blog_input_title">
+                <h3>Update Blog</h3>  
+                <div>
+                    <img src="saveicon.png" alt="save" onClick={onSaveBlogClicked} style={{width:"50px", height:"50px"}}></img>
+                    <img src="deleteicon.png" alt="delete" onClick={onDeleteBlogClicked} style={{width:"50px", height:"50px"}}></img>
+                </div>
+         </div>
+
         <p className={errClass}>{errContent}</p>
-        <form onSubmit={e => e.preventDefault()}>
 
-           
+        <div className="blog_wrapper">
+            <form onSubmit={e => e.preventDefault()}>
 
-            <label htmlFor="blog-title">Title</label>
-            <input id="blog-title" name="title" type="text" autoComplete="off" value={title} onChange={onTitleChanged}/>
-            
-            <label htmlFor="blog-body">Body</label>
-            <textarea id="blog-body" name="body" autoComplete="off" value={body} onChange={onBodyChanged}/>
+            <div className="blog_input">
+                <label htmlFor="blog-title">Title</label>
+                <input id="blog-title" name="title" type="text" autoComplete="off" value={title} onChange={onTitleChanged}/>
+            </div>
 
-            <label htmlFor="blog-user">User</label>
-            <input id="blog-user" name="user" type="text" autoComplete="off" value={user} onChange={onUserChanged}/>
+            <div className="blog_input">
+                <label htmlFor="blog-body">Body</label>
+                <textarea id="blog-body" name="body" autoComplete="off" value={body} onChange={onBodyChanged}/>
+            </div>
 
-            <label htmlFor="blog-link">Link</label>
-            <input id="blog-link" name="link" type="text" autoComplete="off" value={link} onChange={onLinkChanged}/>
+            <div className="blog_input">
+                <label htmlFor="blog-user">User</label>
+                <input id="blog-user" name="user" type="text" autoComplete="off" value={user} onChange={onUserChanged}/>
+            </div>
 
-            <label htmlFor="blog-active">Hide</label>
-            <input id="blog-hide" name="hide" type="checkbox" autoComplete="off" value={hide} onChange={onHideChanged}/>
+            <div className="blog_input">
+                <label htmlFor="blog-link">Link</label>
+                <input id="blog-link" name="link" type="text" autoComplete="off" value={link} onChange={onLinkChanged}/>
+            </div>
 
-            <button title="save" onClick={onSaveBlogClicked} disabled={!canSave}>
-                Save
-            </button>
+            <div className="blog_input">
+                <label htmlFor="blog-active">Hide</label>
+                <input id="blog-hide" name="hide" type="checkbox" autoComplete="off" value={hide} onChange={onHideChanged}/>
+            </div>
 
-            <button title="delete" onClick={onDeleteBlogClicked}>
-                Delete
-            </button>
-            
-        </form> 
+                <button title="save" onClick={onSaveBlogClicked} disabled={!canSave}>
+                    Save
+                </button>
+
+                <button title="delete" onClick={onDeleteBlogClicked}>
+                    Delete
+                </button>
+                
+            </form> 
+        </div>
         </>
     )
 

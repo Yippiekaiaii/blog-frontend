@@ -19,7 +19,7 @@ const Blog = ({ blogId}) => {
                 <div className="blog_wrapper">
                     <h3>{blog.title}</h3>
                     <p>{blog.body}</p>
-                    <p className="written_by">By: {blog.user} <span>{(role=='Admin' || role=='Moderator') && <button onClick={handleEdit}>Edit</button>}</span></p>
+                    <p className="written_by">By: {blog.user} <span>{(role=='Admin' || role=='Moderator') && <img src="edit.svg" onClick={handleEdit}/>}</span></p>
                 </div>
 
             )           

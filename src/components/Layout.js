@@ -8,8 +8,9 @@ const Layout = () => {
     return (
         <main>
             <Header/> 
+            <UserLinks/>
             <div className='content_wrapper'>
-                <UserLinks/>
+              
                 <Outlet/> 
             </div> 
                

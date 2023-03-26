@@ -54,29 +54,42 @@ const NewBlog =() => {
 
     const content = (
         <>
-            <p>New Blog</p>
-            
+            <div className="blog_input_title">
+                <h3>New Blog</h3>  
+                <img src="saveicon.png" alt="save" className="save_icon" onClick={onSaveBlogClicked} style={{width:"50px", height:"50px"}}></img>
+            </div>
+
             <p className={errClass}>{error?.data?.message}</p>
 
-            <form className="form" onSubmit={onSaveBlogClicked}>
+           
+                <div className="blog_wrapper">
+                <form className="blog_form" onSubmit={onSaveBlogClicked}>
 
-               <button title="save">Save</button>
+                <div className="blog_input">
+                        <label className="form-label" htmlFor="title">Title:</label>
+                        <input id="title" name="title" type="text" autoComplete="off" value={title} onChange={onTitleChanged}/>
+                </div>
 
-               <label className="form-label" htmlFor="title">Title:</label>
-               <input id="title" name="title" type="text" autoComplete="off" value={title} onChange={onTitleChanged}/>
-
-               <label className="form-label" htmlFor="body">Blog Body:</label>
-               <textarea                 
-                    id="body"
-                    name="body"
-                    value={body}
-                    onChange={onBodyChanged}
-                />
+                <div className="blog_input">
+                        <label className="form-label" htmlFor="body" style={{alignSelf:"flex-start"}}>Blog Body:</label>
+                        <textarea                 
+                                id="body"
+                                name="body"
+                                value={body}
+                                onChange={onBodyChanged}
+                            />
+                        
+                    </div>
+                
+                <div className="blog_input">
+                        <label className="form-label" htmlFor="link">Link:</label>
+                        <input id="link" name="link" type="link" autoComplete="off" value={link} onChange={onLinkChanged}/>
+                </div>
+                
                
-               <label className="form-label" htmlFor="link">Link:</label>
-               <input id="link" name="link" type="link" autoComplete="off" value={link} onChange={onLinkChanged}/>
-
-            </form>
+                </form>
+                </div>
+           
         </>
     )
 

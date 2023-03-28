@@ -17,9 +17,9 @@ const Blog = ({ blogId}) => {
             return (
              
                 <div className="blog_wrapper">
-                    <h3>{blog.title}</h3>
-                    <p>{blog.body}</p>
-                    <p className="written_by">By: {blog.user} <span>{(role=='Admin' || role=='Moderator') && <img src="edit.svg" onClick={handleEdit}/>}</span></p>
+                    <h3>{blog.title}</h3>                  
+                    <div dangerouslySetInnerHTML={{__html: blog.body}}></div>
+                    <p className="written_by">By: {blog.user} <span>{(role=='Admin' || role=='Moderator') && <img src="edit.svg" className="edit_icon" onClick={handleEdit}/>}</span></p>
                 </div>
 
             )           

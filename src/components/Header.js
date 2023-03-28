@@ -21,7 +21,7 @@ const Header =() => {
                     
                 </header>
             
-                <p>Node, react, javascript and more</p>
+                <p>Node, React, Javascript and more</p>
             </div>
         </div>
         </>

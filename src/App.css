@@ -93,6 +93,11 @@ a:visited {
     margin-top: 8px;
 }
 
+.blog_hidden label{
+    width: 100px;
+    margin-right: 30px;
+}
+
 .blog_input label{
     width: 100px;
     text-align: left;
@@ -113,6 +118,7 @@ a:visited {
     align-content: center;
 }
 
+
 .save_icon:hover {
     content: url("/public/saveicon.gif");
 }
@@ -120,6 +126,34 @@ a:visited {
 .delete_icon:hover {
     content: url("/public/deleteicon.gif");
 }
+
+.edit_icon:hover {
+    filter:invert(50%)
+}
+
+.logout_icon:hover {
+    filter:invert(50%)
+}
+
+.login_icon:hover {
+    filter:invert(50%)
+}
+
+table{
+    width: 70%;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.table_edit {
+    width:30px;
+    text-align: center;
+}
+
+
 
 
 

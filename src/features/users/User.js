@@ -19,16 +19,19 @@ const User = ({userId}) => {
   
     if(user){       
         
-        const handleEdit = () => navigate(`/users/${userId}`)       
-        const cellStatus = user.active ? '' : 'table__cell--inactive'
+        const handleEdit = () => navigate(`/users/${userId}`)               
 
         return (
-            <tr className="table__row user">
-                <td>{user.username}</td> 
-                <td>{user.role}</td>   
-                <td>{user.active}</td> 
-                <button onClick={handleEdit}>Edit</button>                
-            </tr>
+             
+                <tr>
+                   
+                    <td>{user.username}</td> 
+                    <td>{user.role}</td>   
+                    <td>{user.active ? "Active": "Inactive"}</td> 
+                    <td className="table_edit"><img src="edit.svg" className="edit_icon" onClick={handleEdit} style={{width:"20px"}}/></td>    
+                    
+                </tr>
+                
         )
 
     } else return null

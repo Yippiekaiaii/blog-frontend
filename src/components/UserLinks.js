@@ -48,7 +48,7 @@ const UserLinks =() => {
 
             <div className="user_name">
                 <p>Logged In as {username} ({role})</p> 
-                <img src="logouticon.png" alt="log out" onClick={onLogoutClicked}></img>               
+                <img src="/logouticon.png" alt="log out" className="logout_icon" onClick={onLogoutClicked}></img>               
             </div>
 
             <div className="user_links">   

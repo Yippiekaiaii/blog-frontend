@@ -32,19 +32,22 @@ const UsersList = () => {
         const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)  //check there are some id's existing then map over ids
        
         content = (
+            <>
+            <h3>Users List</h3>
             <table>
                 <thead>
-                    <tr>
+                    <tr>                
                         <th scope="col">Username</th>   
                         <th scope="col">Role</th>  
                         <th scope="col">Active</th>                     
-                        <th scope="col">Edit</th> 
+                        <th scope="col">Edit</th>                  
                     </tr>
                 </thead>
                 <tbody>
                     {tableContent}
                 </tbody>
             </table>
+            </>
         )
     }
 

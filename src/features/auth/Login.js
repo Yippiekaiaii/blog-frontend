@@ -90,7 +90,7 @@ const Login =() => {
 
                 <br></br>
                 
-                <img src="loginicon.png" alt="log in" onClick={handleSubmit}></img>
+                <img src="loginicon.png" alt="log in" className="login_icon" onClick={handleSubmit}></img>
                 <br></br>
                 <label htmlFor="persist" style={{fontSize:10}}>Remember me</label>
                 <input type = "checkbox" id="persist" onChange={handleToggle} checked={persist}/>

@@ -26,7 +26,7 @@ const EditBlogForm = ({blog}) => {
         //Wrap updateBlog function in new function that adds some logging
         const updateBlogWithLogs = async (params) => {
             console.log("Updating blog with params: ", params);
-            const result = await updateBlog(params);
+            const result = await updateBlog({...params, hide: !!params.hide});
             console.log("Update result: ", result);
             return result;
         };   
@@ -39,7 +39,7 @@ const EditBlogForm = ({blog}) => {
     const [body, setBody] = useState(blog.body)
     const [link, setLink] = useState(blog.link)
     const [user, setUser] = useState(blog.user)
-    const [hide, setHide] = useState(blog.hide)
+    const [hide, setHide] = useState(blog.hide || false)
 
     //Listen for the edit blog submit being a success and then clear the state and navigate to /
     useEffect(()=>{      
@@ -61,7 +61,7 @@ const EditBlogForm = ({blog}) => {
     const onBodyChanged = e => setBody(e.target.value)
     const onUserChanged = e => setUser(e.target.value)
     const onLinkChanged = e => setLink(e.target.value)
-    const onHideChanged = e => setHide(e.target.value)
+    const onHideChanged = e => setHide(e.target.checked)
 
     //Check if form has all required fields filled out and the form is not in a loading state
     const canSave = [title,body,user].every(Boolean) && !isLoading
@@ -91,8 +91,8 @@ const EditBlogForm = ({blog}) => {
           <div className="blog_input_title">
                 <h3>Update Blog</h3>  
                 <div>
-                    <img src="saveicon.png" alt="save" onClick={onSaveBlogClicked} style={{width:"50px", height:"50px"}}></img>
-                    <img src="deleteicon.png" alt="delete" onClick={onDeleteBlogClicked} style={{width:"50px", height:"50px"}}></img>
+                    <img src="/saveicon.png" alt="save" className="save_icon" onClick={onSaveBlogClicked} style={{width:"50px", height:"50px"}}></img>
+                    <img src="/deleteicon.png" alt="delete" className="delete_icon" onClick={onDeleteBlogClicked} style={{width:"50px", height:"50px"}}></img>                    
                 </div>
          </div>
 
@@ -121,18 +121,10 @@ const EditBlogForm = ({blog}) => {
                 <input id="blog-link" name="link" type="text" autoComplete="off" value={link} onChange={onLinkChanged}/>
             </div>
 
-            <div className="blog_input">
-                <label htmlFor="blog-active">Hide</label>
-                <input id="blog-hide" name="hide" type="checkbox" autoComplete="off" value={hide} onChange={onHideChanged}/>
-            </div>
-
-                <button title="save" onClick={onSaveBlogClicked} disabled={!canSave}>
-                    Save
-                </button>
-
-                <button title="delete" onClick={onDeleteBlogClicked}>
-                    Delete
-                </button>
+            <div className="blog_hidden">
+                <label htmlFor="blog-active">Hidden</label>
+                <input id="blog-hide" name="hide" type="checkbox" autoComplete="off" checked={hide} onChange={onHideChanged}/>
+            </div>             
                 
             </form> 
         </div>

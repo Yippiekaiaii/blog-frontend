@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice"
 import { useNavigate } from "react-router-dom"
 
+//REGEX for testing valid password
+const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 const EditUserForm = ({user}) => {
 
@@ -28,10 +30,16 @@ const EditUserForm = ({user}) => {
     const [validPassword, setValidPassword] = useState(false)
     const [role, setRole] = useState(user.role)
     const [active, setActive] = useState(user.active)
+    const [cantSaveMessage,setMessage] = useState('')
+
+
+    //If password changes test it against the REGEX (returns true if is valid)
+    useEffect(()=>{
+        setValidPassword(PWD_REGEX.test(password))
+    },[password])
 
     //Check for success on update or delete, then clear state and go back to /userslist
-    useEffect(() => {
-        console.log(isSuccess)
+    useEffect(() => {       
         if (isSuccess || isDelSuccess) {
             setUsername('')
             setPassword('')
@@ -45,6 +53,7 @@ const EditUserForm = ({user}) => {
     const onPasswordChanged = e => setPassword(e.target.value)
     const onRoleChanged = e => setRole(e.target.value)
     const onActiveChanged = () => setActive(prev => !prev)
+    const onCantSave = () => setMessage('Invalid Password, must be 4-12 chars and can include !@#$%')
 
     //Update Record
     const onSaveUserClicked = async (e) => {
@@ -57,11 +66,18 @@ const EditUserForm = ({user}) => {
 
     //Delete Record
     const onDeleteUserClicked = async () => {
+        console.log('user.id in EditUserForm:', user.id);
         await deleteUser({ id: user.id })
     }
 
     //Check if form has all required fields filled out and the form is not in a loading state
-    const canSave = [username,role].every(Boolean) && !isLoading
+    let canSave
+    
+    if (password) {
+        canSave = [role, validPassword].every(Boolean) && !isLoading
+    } else {
+        canSave = [role, username].every(Boolean) && !isLoading
+    }    
 
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
@@ -70,25 +86,48 @@ const EditUserForm = ({user}) => {
     //Content Start
     const content = ( 
     <>
-        <p className={errClass}>{errContent}</p>
-        <h2>Edit User</h2>
 
-        <button title="Save" onClick={onSaveUserClicked} disabled={!canSave}>Save</button>
-        <button title="Delete" onClick={onDeleteUserClicked} disabled={!canSave}>Delete</button>
+        <div className="update_user_header">
+            <h2>Edit User</h2>
+            <div>
+                {canSave ?
+                <img src="/saveicon.png" alt="save" className="save_icon" onClick={onSaveUserClicked} style={{width:"50px", height:"50px"}}></img>
+                :
+                <img src="/saveicon.png" alt="save" className="save_icon" onClick={onCantSave} style={{width:"50px", height:"50px"}}></img>
+                }
+                <img src="/deleteicon.png" alt="delete" className="delete_icon" onClick={onDeleteUserClicked} style={{width:"50px", height:"50px"}}></img>                    
+            </div>
+        </div>
 
-        <label htmlFor="username">User Name</label>
-        <input id="username" name="username" type="text" autoComplete="off" value={username} onChange={onUsernameChanged}/>
+    <div className="update_user_wrapper"> 
 
-        <label htmlFor="role">Role</label>
-        <input id="role" name="role" type="text" autoComplete="off" value={role} onChange={onRoleChanged}/>
+        <div className="update_user_input">
+            <label htmlFor="username">User Name:</label>
+            <input id="username" name="username" type="text" autoComplete="off" value={username} onChange={onUsernameChanged}/>
+        </div>
 
-        <label htmlFor="active">Active</label>
-        <input id="active" name="active" type="text" autoComplete="off" value={active} onChange={onActiveChanged}/>
+        <div className="update_user_input">
+            <label htmlFor="new-password">New Password:</label>
+            <input id="new-password" name="new-password" type="password" autoComplete="off" onChange={onPasswordChanged}/>
+        </div>
 
-        <label htmlFor="new-password">New Password</label>
-        <input id="new-password" name="new-password" type="text" autoComplete="off"/>
-        <p>password change is not currently functional - add in encrypt and save</p>
+        <div className="update_user_input">
+            <label htmlFor="roles">Role:</label>
+            <select id="role" name="role" value={role} onChange={onRoleChanged}>
+                            <option value="User">User</option>
+                            <option value="Moderator">Moderator</option>
+                            <option value="Admin">Admin</option>
+            </select>    
+        </div>  
 
+        <div className="update_user_input">
+            <label htmlFor="active">Active:</label>
+            <input id="active" name="active" type="checkbox" checked={active} onChange={onActiveChanged}/>
+        </div>
+  
+    </div>
+    <p className="cantSave">{cantSaveMessage}</p>
+    <p className={errClass}>{errContent}</p>
     </>
 )
 

@@ -85,7 +85,6 @@ a:visited {
 }
 
 
-
 .blog_input{
     display: flex;
     align-items: center;
@@ -152,6 +151,40 @@ td {
     width:30px;
     text-align: center;
 }
+
+.new_user_input{
+    display: flex;
+    align-items: center;
+    max-width: 70%;
+    margin-top: 8px;
+}
+
+.new_user_input label{
+    width:50%;
+}
+
+.new_user_input input{
+    width:50%;
+}
+
+.new_user_header{
+    display:flex;
+    justify-content: space-between;
+}
+
+.update_user_header{
+    display:flex;
+    justify-content:space-between;
+}
+
+.update_user_input label{
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 25% !important;
+
+}
+
+
 
 
 

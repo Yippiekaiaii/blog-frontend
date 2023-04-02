@@ -55,8 +55,8 @@ const NewBlog =() => {
     const content = (
         <>
             <div className="blog_input_title">
-                <h3>New Blog</h3>  
-                <img src="saveicon.png" alt="save" className="save_icon" onClick={onSaveBlogClicked} style={{width:"50px", height:"50px"}}></img>
+                <h3>New Blog</h3>     <img src="saveicon.png" alt="save" className="save_icon" onClick={onSaveBlogClicked} style={{width:"50px", height:"50px"}}></img>
+             
             </div>
 
             <p className={errClass}>{error?.data?.message}</p>

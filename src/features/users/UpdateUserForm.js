@@ -86,48 +86,50 @@ const EditUserForm = ({user}) => {
     //Content Start
     const content = ( 
     <>
+    <div className="box_wrapper">
 
-        <div className="update_user_header">
-            <h2>Edit User</h2>
-            <div>
-                {canSave ?
-                <img src="/saveicon.png" alt="save" className="save_icon" onClick={onSaveUserClicked} style={{width:"50px", height:"50px"}}></img>
-                :
-                <img src="/saveicon.png" alt="save" className="save_icon" onClick={onCantSave} style={{width:"50px", height:"50px"}}></img>
-                }
-                <img src="/deleteicon.png" alt="delete" className="delete_icon" onClick={onDeleteUserClicked} style={{width:"50px", height:"50px"}}></img>                    
+            <div className="update_user_header">
+                <h2>Edit User</h2>
+                <div>
+                    {canSave ?
+                    <img src="/saveicon.png" alt="save" className="save_icon" onClick={onSaveUserClicked} style={{width:"50px", height:"50px"}}></img>
+                    :
+                    <img src="/saveicon.png" alt="save" className="save_icon" onClick={onCantSave} style={{width:"50px", height:"50px"}}></img>
+                    }
+                    <img src="/deleteicon.png" alt="delete" className="delete_icon" onClick={onDeleteUserClicked} style={{width:"50px", height:"50px"}}></img>                    
+                </div>
             </div>
+
+        <div className="update_user_wrapper"> 
+
+            <div className="update_user_input">
+                <label htmlFor="username">User Name:</label>
+                <input id="username" name="username" type="text" autoComplete="off" value={username} onChange={onUsernameChanged}/>
+            </div>
+
+            <div className="update_user_input">
+                <label htmlFor="new-password">New Password:</label>
+                <input id="new-password" name="new-password" type="password" autoComplete="off" onChange={onPasswordChanged}/>
+            </div>
+
+            <div className="update_user_input">
+                <label htmlFor="role">Role:</label>
+                <select id="role" name="role" value={role} onChange={onRoleChanged}>
+                                <option value="User">User</option>
+                                <option value="Moderator">Moderator</option>
+                                <option value="Admin">Admin</option>
+                </select>    
+            </div>  
+
+            <div className="update_user_input">
+                <label htmlFor="active">Active:</label>
+                <input id="active" name="active" type="checkbox" checked={active} onChange={onActiveChanged}/>
+            </div>
+    
         </div>
-
-    <div className="update_user_wrapper"> 
-
-        <div className="update_user_input">
-            <label htmlFor="username">User Name:</label>
-            <input id="username" name="username" type="text" autoComplete="off" value={username} onChange={onUsernameChanged}/>
-        </div>
-
-        <div className="update_user_input">
-            <label htmlFor="new-password">New Password:</label>
-            <input id="new-password" name="new-password" type="password" autoComplete="off" onChange={onPasswordChanged}/>
-        </div>
-
-        <div className="update_user_input">
-            <label htmlFor="roles">Role:</label>
-            <select id="role" name="role" value={role} onChange={onRoleChanged}>
-                            <option value="User">User</option>
-                            <option value="Moderator">Moderator</option>
-                            <option value="Admin">Admin</option>
-            </select>    
-        </div>  
-
-        <div className="update_user_input">
-            <label htmlFor="active">Active:</label>
-            <input id="active" name="active" type="checkbox" checked={active} onChange={onActiveChanged}/>
-        </div>
-  
+        <p className="cantSave">{cantSaveMessage}</p>
+        <p className={errClass}>{errContent}</p>
     </div>
-    <p className="cantSave">{cantSaveMessage}</p>
-    <p className={errClass}>{errContent}</p>
     </>
 )
 

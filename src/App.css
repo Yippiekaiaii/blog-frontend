@@ -1,20 +1,43 @@
 
+body {
+    background-size: cover;
+    background-image: url("/public/background.jpg");
+    
+}
+
+button{
+    background-color: ghostwhite;
+    border-style: solid;
+    border-color: rgb(51, 50, 50);
+    border-radius: 5px;
+    border-width: 0.5px;
+}
+
 a{
     text-decoration: none;
 }
 
 a:visited {
     color:inherit;
+    text-align: center;
 }
 
 .active{
     background-color: darkgrey;
-    border-radius: 5px;
+    border-radius: 5px; 
+    padding: 2px;  
+}
+
+select {
+    background-color: white;
+    border-style: solid;
+    border-color: darkgrey;
 }
 
 .content_wrapper{
     width: 50%;
-    margin: 0 auto;
+    margin: 0 auto;  
+
 }
 
 .header_wrapper{
@@ -34,28 +57,49 @@ a:visited {
     margin-bottom: 0;
 }
 
-.header_wrapper p{
+.header_wrapper p, h1{
     margin-top: 2;
+    color:ghostwhite;
 }
 
 .header_background{
-    background-color:silver;
+    background-color:rgb(53, 52, 52);
 }
 
 .main_links a{
-    padding-right: 20px;
-   
+    margin-right: 20px;
+    padding: 2px;
+    color:ghostwhite;
+}
+
+.user_header{
+    opacity: 1;
+    background-color: ghostwhite;
 }
 
 .user_links_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 50%;
     margin: 0 auto;
     max-width: 50%;
     padding-bottom: 10px;
 }
 
-.user_links a{
-    padding-right:20px;   
+.user_links{
+    margin-left: 0px;     
+}
+
+.user_links a{ 
+    margin-right:20px;   
+    text-align: center;
+    padding: 2px;  
+}
+
+.link{
+    text-align:center;
+    line-height: 50%;
 }
 
 .user_name{
@@ -67,10 +111,33 @@ a:visited {
     font-size: 12;
 }
 
-.blog_wrapper img {
-    width:30px;
+.box_wrapper{
+    opacity: 1;
+    background-color:ghostwhite; 
+    border-radius: 8px;   
+    margin: 10px; 
+    padding: 20px;   
 }
 
+.loading{
+    opacity: 1;
+    background-color:ghostwhite; 
+    border-radius: 8px;   
+    margin: 10px; 
+    padding: 20px;   
+}
+
+.blog_wrapper img {
+    width:30px;    
+}
+
+
+
+.blog_details {   
+    display: flex;
+    justify-content: space-between; 
+    font-size: 12px;   
+}
 
 .login_input{
     display: flex;
@@ -116,6 +183,12 @@ a:visited {
     justify-content: space-between;
     align-content: center;
 }
+
+.blog_content_truncate{
+    max-height: 200px;  
+    overflow: hidden; 
+}
+
 
 
 .save_icon:hover {
@@ -164,7 +237,7 @@ td {
 }
 
 .new_user_input input{
-    width:50%;
+    width:30%;
 }
 
 .new_user_header{
@@ -181,7 +254,6 @@ td {
     margin-bottom: 5px;
     display: inline-block;
     width: 25% !important;
-
 }
 
 

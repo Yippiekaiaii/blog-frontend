@@ -22,7 +22,7 @@ const PublicBlogs =() => {
     let content
 
     //Loading 
-    if (isLoading) content = <p>Loading...</p>
+    if (isLoading) content = <p className="loading">Loading...</p>
   
 
     //On Error
@@ -36,7 +36,13 @@ const PublicBlogs =() => {
 
        let filteredIds = [...ids] //For later to allow addition of a filter to the blog list
        
-       
+       //Sort blogs into date order (newest first)
+       filteredIds.sort((a,b)=>{
+            const dateA = new Date(entities[a].createdAt)
+            const dateB = new Date(entities[b].createdAt)
+            return dateB - dateA;
+       })
+
        const tableContent = ids?.length && filteredIds.map(blogId => <Blog key={blogId} blogId={blogId}/>)
        content = <div>{tableContent}</div>
       

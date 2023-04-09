@@ -66,37 +66,41 @@ const Login =() => {
 
     const errClass = errMsg ? "errmsg" : "offscreen"
 
-    if (isLoading) return <p>Loading....</p>
+    if (isLoading) return <p className="loading">Loading....</p>
 
     const content = (
         <>
-        <h3>Sign In</h3>
-        <p style={{fontSize:12}}>Please enter your credentials below</p>
+        <div className="box_wrapper">
+            <h3>Sign In</h3>
+            <p style={{fontSize:12}}>Please enter your credentials below</p>
 
-        <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
+            <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
-        <form onSubmit={handleSubmit}>
-          
-                <div className="login_input">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" id="username" ref={userRef} value={username} onChange={handleUserInput} autoComplete="off" required /><br></br>
+            <form onSubmit={handleSubmit}>
             
-                </div>
+                    <div className="login_input">
+                        <label htmlFor="username">Username</label>
+                        <input type="text" id="username" ref={userRef} value={username} onChange={handleUserInput} autoComplete="off" required /><br></br>
                 
-                <div className="login_input">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" value={password} onChange={handlePwdInput} autoComplete="off" required />
-                </div>
+                    </div>
+                    
+                    <div className="login_input">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" value={password} onChange={handlePwdInput} autoComplete="off" required />
+                    </div>
 
-                <br></br>
-                
-                <img src="loginicon.png" alt="log in" className="login_icon" onClick={handleSubmit}></img>
-                <br></br>
-                <label htmlFor="persist" style={{fontSize:10}}>Remember me</label>
-                <input type = "checkbox" id="persist" onChange={handleToggle} checked={persist}/>
-           
-        </form>
+                    <br></br>
+                    
+                    <img src="loginicon.png" alt="log in" className="login_icon" onClick={handleSubmit}></img>
+                    <br></br>
+                    <label htmlFor="persist" style={{fontSize:10}}>Remember me</label>
+                    <input type = "checkbox" id="persist" onChange={handleToggle} checked={persist}/>
+            
+            </form>
+        </div>
         </>
+
+        
 
     )
 

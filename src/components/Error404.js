@@ -2,7 +2,9 @@
 
 const error404 =() => {
     const content = (
-        <p>Error 404 Page Not Found</p>
+        <div className="box_wrapper">
+             <p>Error 404 Page Not Found</p>
+        </div>
     )
 
     return content

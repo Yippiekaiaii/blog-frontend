@@ -53,6 +53,7 @@ const NewUser = () => {
 
     const content = (
         <>
+        <div className="box_wrapper">
             <p className={errClass}>{error?.data?.message}</p>
 
             <div className="new_user_header">
@@ -87,7 +88,7 @@ const NewUser = () => {
             </div>
 
             </form>
-        
+        </div>
         </>
     )
    

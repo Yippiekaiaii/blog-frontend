@@ -28,15 +28,15 @@ const UserLinks =() => {
         error
     }] = useSendLogoutMutation()
 
-    //If logout is successful navigate to home
+    //If logout is successful navigate to login page
     useEffect(() => {
-        if (isSuccess) navigate('/')
+        if (isSuccess) navigate('/login')
     }, [isSuccess, navigate])
 
     //Logout handler
     const onLogoutClicked = () => sendLogout()
 
-    if (isLoading) return <p>Logging Out...</p>
+    if (isLoading) return <p className="loading">Logging Out...</p>
 
     if (isError) return <p>Error:{error.message}</p>
 
@@ -46,18 +46,18 @@ const UserLinks =() => {
         <header className="user_header">
         <div className="user_links_wrapper">
 
+            <div className="user_links">   
+                <NavLink to="/" className="link">Blogs</NavLink> 
+                {(role=='Admin' || role=='Moderator' || role=='User') && <NavLink to="/newblog" className="link">New Blog</NavLink>}       
+                {(role=='Admin' || role=='Moderator') && <NavLink to="/userslist" className="link">Users</NavLink>}   
+                {(role=='Admin') && <NavLink to="/newuser" className="link">New User</NavLink>} 
+              
+            </div>
+
             <div className="user_name">
                 <p>Logged In as {username} ({role})</p> 
                 <img src="/logouticon.png" alt="log out" className="logout_icon" onClick={onLogoutClicked}></img>               
-            </div>
-
-            <div className="user_links">   
-                <NavLink to="/">Blogs</NavLink> 
-                {(role=='Admin' || role=='Moderator' || role=='User') && <NavLink to="/newblog">New Blog</NavLink>}       
-                {(role=='Admin' || role=='Moderator') && <NavLink to="/userslist">Users</NavLink>}   
-                {(role=='Admin') && <NavLink to="/newuser">New User</NavLink>} 
-              
-            </div>
+            </div>           
          
         </div>
         <hr/>

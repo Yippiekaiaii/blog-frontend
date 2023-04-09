@@ -21,7 +21,7 @@ const UsersList = () => {
 
     let content
 
-    if (isLoading) content = <p>Loading....</p>
+    if (isLoading) content = <p className="loading">Loading....</p>
 
     if (isError){
         content = <p className={isError ? "errmsg" : "offscreen"}>{error?.data?.message}</p>
@@ -33,20 +33,22 @@ const UsersList = () => {
        
         content = (
             <>
-            <h3>Users List</h3>
-            <table>
-                <thead>
-                    <tr>                
-                        <th scope="col">Username</th>   
-                        <th scope="col">Role</th>  
-                        <th scope="col">Active</th>                     
-                        <th scope="col">Edit</th>                  
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableContent}
-                </tbody>
-            </table>
+            <div className="box_wrapper">
+                <h3>Users List</h3>
+                <table>
+                    <thead>
+                        <tr>                
+                            <th scope="col">Username</th>   
+                            <th scope="col">Role</th>  
+                            <th scope="col">Active</th>                     
+                            <th scope="col">Edit</th>                  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tableContent}
+                    </tbody>
+                </table>
+            </div>
             </>
         )
     }

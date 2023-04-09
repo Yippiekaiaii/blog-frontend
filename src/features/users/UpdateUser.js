@@ -17,7 +17,7 @@ const EditUser = () => {
     })
     
 
-    if (!user) return <p>Loading....</p>
+    if (!user) return <p className="loading">Loading....</p>
 
     //If we have a blog display the EditBlogForm component if not show loading
     const content = <EditUserForm user={user} /> 

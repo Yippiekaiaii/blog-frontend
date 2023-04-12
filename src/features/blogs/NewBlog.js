@@ -3,9 +3,10 @@ import {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import { useAddNewBlogMutation } from "./blogsApiSlice"
 import useAuth from "../../hooks/useAuth"
+import useTitle from "../../hooks/useTitle"
 
 const NewBlog =() => {
-
+    useTitle('Blog: New Blog')
     const {username} = useAuth()
 
     const [addNewblog, { //create addBlogNote function for use later

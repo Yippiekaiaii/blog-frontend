@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux"
 import { setcredentials } from "./authSlice"
 import { useLoginMutation } from "./authApiSlice"
 import usePersist from "../../hooks/usePersist"
-
+import useTitle from "../../hooks/useTitle"
 
 const Login =() => {
+
+    useTitle('Blog: Login')
 
     const userRef = useRef() //set focus on user input
     const errRef = useRef() //set focus if there is an error

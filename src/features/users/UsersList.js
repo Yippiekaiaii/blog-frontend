@@ -1,9 +1,11 @@
 import { useGetUsersQuery } from "./usersApiSlice"
 import User from './User'
 import useAuth from "../../hooks/useAuth"
-
+import useTitle from "../../hooks/useTitle"
 
 const UsersList = () => {
+
+    useTitle('Blog: Users')
 
     const {username,role} = useAuth()
     const {

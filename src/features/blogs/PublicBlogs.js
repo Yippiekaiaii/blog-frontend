@@ -1,9 +1,11 @@
 
 import { useGetBlogsQuery } from "./blogsApiSlice";
 import Blog from './Blog'
+import useTitle from "../../hooks/useTitle"
 
+const PublicBlogs =({isChecked}) => {
 
-const PublicBlogs =() => {
+    useTitle('Blogs')
  
     //Use the useGetBlogsQuery hook from the blogsApiSlice.js
     const {
@@ -19,21 +21,23 @@ const PublicBlogs =() => {
         refetchOnMountOrArgChange: true //If the component is remounted we refetch the data
     })
 
+    
+
     let content
 
     //Loading 
     if (isLoading) content = <p className="loading">Loading...</p>
   
-
     //On Error
     if (isError) {
         content = <p className={isError ? "errmsg" : "offscreen"}>{error?.data?.message}</p>
     }
      
     if (isSuccess) {
-       
+       console.log({isChecked})
        const {ids,entities} = blogs    
 
+       
        let filteredIds = [...ids] //For later to allow addition of a filter to the blog list
        
        //Sort blogs into date order (newest first)
@@ -44,7 +48,7 @@ const PublicBlogs =() => {
        })
 
        const tableContent = ids?.length && filteredIds.map(blogId => <Blog key={blogId} blogId={blogId}/>)
-       content = <div>{tableContent}</div>
+       content = <div>{tableContent} </div>
       
     }    
     

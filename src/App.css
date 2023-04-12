@@ -64,6 +64,8 @@ select {
 
 .header_background{
     background-color:rgb(53, 52, 52);
+    background-image:url("/public/header_background5.jpg") ;
+    background-size: cover;
 }
 
 .main_links a{
@@ -100,6 +102,10 @@ select {
 .link{
     text-align:center;
     line-height: 50%;
+}
+
+.hidden_check_label{
+    font-size: 10px;
 }
 
 .user_name{
@@ -256,8 +262,84 @@ td {
     width: 25% !important;
 }
 
+/*Start Mobile Styling */
 
+@media only screen and (max-width: 1047px) {
 
+    .header_wrapper{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;    
+        justify-content: center;  
+        align-items: center;
+        margin-left: 5px;
+        margin-right: 5px;
+        
+    }
+
+    
+    .main_header{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto; 
+        text-align: center;  
+
+    }
+
+    .main_header h1{
+        margin-bottom: 8px;
+    }
+
+    .header_wrapper p{
+        text-align: center;  
+    }
+
+    .box_wrapper{
+        max-width: 100%;       
+    }
+
+    .content_wrapper {      
+        width: 100%;        
+      }
+
+    .user_links_wrapper {
+        flex-direction: column;
+        padding-top: 8px;
+    }
+
+    a {
+        white-space: nowrap;
+    }
+
+    .user_name {
+        font-size: 10px;
+    }
+
+    .user_name img{
+       
+        height: 30px;
+        width: auto;
+    }
+
+    .blog_input{
+        max-width:100%;
+    }
+
+    .new_user_input{
+        max-width:100%;
+    }
+
+    .new_user_input input {
+        width: 100%;
+      }
+    
+    .update_user_input label {
+    width: 50% !important ;
+    }
+   
+}
 
 
 

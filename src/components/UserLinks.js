@@ -1,16 +1,18 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate,Link,useLocation } from "react-router-dom";
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";  
 import useAuth from "../hooks/useAuth";
+import Layout from "./Layout";
+
 
 //REGEX for userslist endpoint
 const USERLIST_REGEX = /^\/userslist(\/)?$/
 const EDITBLOG_REGEX = /^\/blogs(\/)?$/
 
-
-const UserLinks =() => {
+  
+const UserLinks =({setIsChecked}) => {    
     
     const navigate = useNavigate()
 
@@ -36,6 +38,11 @@ const UserLinks =() => {
     //Logout handler
     const onLogoutClicked = () => sendLogout()
 
+    //hidden checked handler 
+    const handleCheckBoxChange = (e)=> {
+        setIsChecked(e.target.checked)      
+    }
+
     if (isLoading) return <p className="loading">Logging Out...</p>
 
     if (isError) return <p>Error:{error.message}</p>
@@ -51,7 +58,8 @@ const UserLinks =() => {
                 {(role=='Admin' || role=='Moderator' || role=='User') && <NavLink to="/newblog" className="link">New Blog</NavLink>}       
                 {(role=='Admin' || role=='Moderator') && <NavLink to="/userslist" className="link">Users</NavLink>}   
                 {(role=='Admin') && <NavLink to="/newuser" className="link">New User</NavLink>} 
-              
+                <input type="checkbox" id="hidden_check" onChange={handleCheckBoxChange}></input><span className="hidden_check_label">Show hidden</span>
+            
             </div>
 
             <div className="user_name">

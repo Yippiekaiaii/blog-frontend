@@ -1,9 +1,11 @@
 import {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import { useAddNewUserMutation } from "./usersApiSlice"
+import useTitle from "../../hooks/useTitle"
 
 const NewUser = () => {
 
+    useTitle('Blog: New User')
     const [addNewUser, {
         isLoading,
         isSuccess,

@@ -24,7 +24,7 @@ const Blog = ({ blogId }) => {
     return (
       <div className="blog_wrapper box_wrapper">
         <div className="box_contents">
-          <h3>{title}</h3>
+          <h3>{title}</h3>               
           <div
             id={`blogContent_${blogId}`}
             className={expanded ? "" : "blog_content_truncate"}

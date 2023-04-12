@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"
 import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice"
 import { useNavigate } from "react-router-dom"
+import useTitle from "../../hooks/useTitle"
 
 //REGEX for testing valid password
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 const EditUserForm = ({user}) => {
 
+    useTitle('Blog: Edit User')
+    
     //Create an array using the useUpdateUserMutation from the user api slice that contains the updateuser function and then some state properties
     const [updateUser, {
         isLoading,

@@ -1,4 +1,7 @@
-const about =() => {
+import useTitle from "../hooks/useTitle"
+
+const About =() => {
+    useTitle('Blog: About')
     const content = (
         <>
         <div className="box_wrapper">
@@ -14,4 +17,4 @@ const about =() => {
     return content
 }
 
-export default about
+export default About

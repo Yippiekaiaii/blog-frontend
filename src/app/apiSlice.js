@@ -4,7 +4,7 @@ import { setcredentials } from '../features/auth/authSlice'
 
 //add header to the api slice end points, include an access token if it is found the the current redux state
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:3500',
+    baseUrl: 'https://pwblog-api.onrender.com',
     credentials: 'include',
     prepareHeaders: (headers,{getState}) => {
         const token = getState().auth.token

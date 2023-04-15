@@ -17,9 +17,7 @@ const EditBlogForm = ({blog}) => {
 
     //Create deleteBlog function/array
     const [deleteBlog,{
-        isSuccess: isDelSuccess,
-        isError: isDelError,
-        error: delerror
+        isSuccess: isDelSuccess
     }] = useDeleteBlogMutation()
 
 
